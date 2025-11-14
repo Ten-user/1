@@ -1,0 +1,1 @@
+import React from 'react'; import Nav from '../components/Nav'; export default function Home(){ return (<><Nav/><div className='container'><div className='card'><h1>Career Guidance Platform</h1><p className='small'>Professional platform connecting students, institutions and employers.</p></div></div></>) }

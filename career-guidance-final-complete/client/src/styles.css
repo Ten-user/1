@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body { @apply bg-gray-50 text-gray-900 font-sans; }
+.header { @apply bg-white shadow px-6 py-4 }
+.container { max-width:1100px; margin:24px auto; padding:0 16px }
+.card { @apply bg-white rounded-lg shadow p-6 mb-4 }
+.btn { @apply inline-block px-4 py-2 rounded bg-indigo-600 text-white }
+.small { font-size:0.9rem; color:#64748b }

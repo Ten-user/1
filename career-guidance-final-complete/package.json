@@ -1,0 +1,9 @@
+{
+  "name": "career-guidance-final-complete",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "functions"
+  ]
+}
