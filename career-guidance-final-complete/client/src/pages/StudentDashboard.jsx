@@ -31,7 +31,6 @@ export default function StudentDashboard() {
   const [jobs, setJobs] = useState([]);
   const [notifications, setNotifications] = useState([]);
 
-  // Load institutions & student applications
   useEffect(() => {
     async function fetchData() {
       const list = await listInstitutions();
@@ -53,7 +52,6 @@ export default function StudentDashboard() {
     fetchData();
   }, [user]);
 
-  // Load courses for selected institution
   useEffect(() => {
     async function fetchCourses() {
       if (selectedInstitution) {
@@ -64,17 +62,13 @@ export default function StudentDashboard() {
     fetchCourses();
   }, [selectedInstitution]);
 
-  // Add new subject entry
   const addSubject = () => setSubjects([...subjects, { subject: 'Mathematics', symbol: 'C' }]);
-
-  // Update subject entry
   const updateSubject = (index, key, value) => {
     const copy = [...subjects];
     copy[index] = { ...copy[index], [key]: value };
     setSubjects(copy);
   };
 
-  // Upload transcript or document
   const doUpload = async (file, type) => {
     if (!file) return alert('Select a PDF file');
     if (!user) return alert('Please sign in');
@@ -88,7 +82,6 @@ export default function StudentDashboard() {
     }
   };
 
-  // Check if student meets course requirements
   const matches = course => {
     if (!course.requirements || course.requirements.length === 0) return true;
     const map = {};
@@ -101,7 +94,6 @@ export default function StudentDashboard() {
     return true;
   };
 
-  // Apply to a course
   const apply = async (instId, courseId) => {
     if (!user) return alert('Please sign in');
     const appsToInst = applications.filter(a => a.institutionId === instId);
@@ -120,7 +112,6 @@ export default function StudentDashboard() {
     setApplications(apps);
   };
 
-  // Apply to a job
   const applyJob = async jobId => {
     if (!user) return alert('Please sign in');
     await applyToJob(user.uid, jobId);
@@ -165,7 +156,6 @@ export default function StudentDashboard() {
             {progress > 0 && <span style={{ marginLeft: 8 }}>Uploading {progress}%</span>}
           </div>
 
-          {/* Enter Subjects */}
           <div style={{ marginTop: 12 }}>
             <h4>Enter subjects & symbols</h4>
             {subjects.map((s, i) => (
@@ -192,7 +182,7 @@ export default function StudentDashboard() {
 
         {/* Upload Additional Documents */}
         <div className="card">
-          <h3>Upload Additional Documents (Certificates, etc.)</h3>
+          <h3>Upload Additional Documents</h3>
           <input type="file" accept="application/pdf" onChange={e => setFile(e.target.files[0])} />
           <button onClick={() => doUpload(file, 'document')} className="btn mt-2">Upload</button>
           <ul>
@@ -270,7 +260,6 @@ export default function StudentDashboard() {
         </div>
 
       </div>
-
       <Footer />
     </>
   );
